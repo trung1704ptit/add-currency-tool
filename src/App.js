@@ -51,7 +51,7 @@ export default function Home() {
       </button>
       <input value={`${base} / ${nextValue}`} className="input" />
       <CopyToClipboard text={`${base} / ${nextValue}`}>
-        <button>Copy to clipboard with button</button>
+        <button className="copy-button">Copy to clipboard with button</button>
       </CopyToClipboard>
     </main>
   );
