@@ -1,14 +1,6 @@
 import { uniqueSymbols } from "./constant";
 import { useState } from "react";
 
-export async function copyTextToClipboard(text) {
-  if ("clipboard" in navigator) {
-    return await navigator.clipboard.writeText(text);
-  } else {
-    return document.execCommand("copy", true, text);
-  }
-}
-
 export default function Home() {
   const [base, setBase] = useState("USD");
   const [nextValue, setNextValue] = useState("USD");
@@ -18,10 +10,9 @@ export default function Home() {
     if (index < uniqueSymbols.length) {
       const nextItem = uniqueSymbols[index + 1];
       const nextPair = `${base} / ${nextItem}`;
-      copyTextToClipboard(nextPair).then(() => {
-        console.log("copied:", nextPair);
-        setNextValue(nextItem);
-      });
+      navigator.clipboard.writeText(nextPair);
+      console.log("copied:", nextPair);
+      setNextValue(nextItem);
     }
   };
 
