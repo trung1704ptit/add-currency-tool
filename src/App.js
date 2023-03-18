@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import { uniqueSymbols } from "./constant";
+import { useState } from "react";
 
-function App() {
+export default function Home() {
+  const [value, setValue] = useState("USD");
+
+  const onChange = (e) => {
+    console.log(e.target.value)
+    setValue(e.target.value);
+  };
+  const handleClick = () => {
+    const index = uniqueSymbols.findIndex(item => item === value);
+    if (index < uniqueSymbols.length) {
+      const nextItem = uniqueSymbols[index+ 1];
+      const nextPair = `${value} / ${nextItem}`;
+      try {
+        navigator.clipboard.writeText(nextPair);
+        setValue(nextItem)
+        console.log('Content copied to clipboard');
+      } catch (err) {
+        console.error('Failed to copy: ', err);
+      }
+    }
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main>
+      <select value={value} onChange={onChange}>
+        {uniqueSymbols.map((item) => (
+          <option value={item} key={item}>
+            {item}
+          </option>
+        ))}
+      </select>
+      <button className="button" onClick={handleClick}>Get Next Value</button>
+    </main>
   );
 }
-
-export default App;
