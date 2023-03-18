@@ -11,7 +11,7 @@ export async function copyTextToClipboard(text) {
 
 export default function Home() {
   const [base, setBase] = useState("USD");
-  const [nextValue, setNextValue] = useState("EUR");
+  const [nextValue, setNextValue] = useState("USD");
 
   const handleClick = () => {
     const index = uniqueSymbols.findIndex((item) => item === nextValue);
