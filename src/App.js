@@ -1,5 +1,6 @@
 import { uniqueSymbols } from "./constant";
 import { useState } from "react";
+import CopyToClipboard from "react-copy-to-clipboard";
 
 export default function Home() {
   const [base, setBase] = useState("USD");
@@ -9,9 +10,7 @@ export default function Home() {
     const index = uniqueSymbols.findIndex((item) => item === nextValue);
     if (index < uniqueSymbols.length) {
       const nextItem = uniqueSymbols[index + 1];
-      const nextPair = `${base} / ${nextItem}`;
-      navigator.clipboard.writeText(nextPair);
-      console.log("copied:", nextPair);
+      // const nextPair = `${base} / ${nextItem}`;
       setNextValue(nextItem);
     }
   };
@@ -50,6 +49,10 @@ export default function Home() {
       <button className="button" onClick={handleClick}>
         Get Next Value
       </button>
+      <input value={`${base} / ${nextValue}`} className="input" />
+      <CopyToClipboard text={`${base} / ${nextValue}`}>
+        <button>Copy to clipboard with button</button>
+      </CopyToClipboard>
     </main>
   );
 }
