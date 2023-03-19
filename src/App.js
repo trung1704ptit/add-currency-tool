@@ -9,20 +9,16 @@ export default function Home() {
   const handleClick = () => {
     const index = uniqueSymbols.findIndex((item) => item === nextValue);
     if (index < uniqueSymbols.length) {
-      const nextItem = uniqueSymbols[index + 1];
-      // const nextPair = `${base} / ${nextItem}`;
+      let nextItem = uniqueSymbols[index + 1];
+      if (nextItem === base) {
+        nextItem = uniqueSymbols[index + 2];
+      }
       setNextValue(nextItem);
     }
   };
 
-  const handleChangeBase = () => {
-    const index = uniqueSymbols.findIndex((item) => item === base);
-    if (index + 1 < uniqueSymbols.length) {
-      const nextBase = uniqueSymbols[index + 1];
-      const nextVal = uniqueSymbols[index + 1];
-      setBase(nextBase);
-      setNextValue(nextVal);
-    }
+  const handleChangeBase = (e) => {
+    setBase(e.target.value)
   };
 
   const onChangeNextValue = (e) => {
