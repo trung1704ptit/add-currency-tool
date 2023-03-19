@@ -109,7 +109,6 @@ export const uniqueSymbols = [
   "QAR",
   "RON",
   "RWF",
-  "WST",
   "SAR",
   "RSD",
   "SCR",
@@ -134,8 +133,6 @@ export const uniqueSymbols = [
   "AED",
   "UYU",
   "UZS",
-  // 'VUV',
-  // 'VEF',
   "YER",
   "ZMW",
 ];
