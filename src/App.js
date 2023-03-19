@@ -8,12 +8,18 @@ export default function Home() {
 
   const handleClick = () => {
     const index = uniqueSymbols.findIndex((item) => item === nextValue);
-    if (index < uniqueSymbols.length) {
+    if (index + 1 < uniqueSymbols.length) {
       let nextItem = uniqueSymbols[index + 1];
       if (nextItem === base) {
         nextItem = uniqueSymbols[index + 2];
       }
       setNextValue(nextItem);
+    } else {
+     const baseIndex =  uniqueSymbols.findIndex((item) => item === base);
+     if (baseIndex < uniqueSymbols.length) {
+       setBase(uniqueSymbols[baseIndex + 1]);
+       setNextValue('USD')
+     }
     }
   };
 
