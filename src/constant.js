@@ -51,7 +51,6 @@ export const uniqueSymbols = [
   "DJF",
   "DOP",
   "EGP",
-  "ERN",
   "SZL",
   "ETB",
   "FJD",
